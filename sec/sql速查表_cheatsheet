@@ -1,0 +1,25 @@
+# 信息表1
+information_schema.columns
+    table_schema, table_name, column_name
+
+# 信息表2
+sys.schema_auto_increment_columns
+    table_schema, table_name, column_name
+
+# 信息表3
+mysql.innodb_table_stats
+    database_name, table_name
+
+# 信息表4
+mysql.innodb_index_stats
+    database_name, table_name
+
+# 信息表5
+information_schema.processlist
+    Info # 当前正在执行的语句
+
+# 信息表6
+performance_schema.events_statements_history
+    SQL_TEXT, DIGEST_TEXT # 历史语句
+
+

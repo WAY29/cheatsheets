@@ -1,0 +1,5 @@
+// file_put_contents第二个参数可以是一个数组，可以用于绕过
+
+$test = $_GET['txt'];
+if(preg_match('[<>?]', $test)) die('no');
+file_put_contents('a.php', $test);

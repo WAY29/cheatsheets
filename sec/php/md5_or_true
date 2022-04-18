@@ -1,0 +1,6 @@
+假设存在以下查询语句:
+select * from user where user_name = 'xxdawdawd' or '[数字开头]xx';则可以爆出该表的所有数据
+因此假如存在类似select * from 'admin' where password=md5($pass,true)这样的语句,则可以使用以下数据
+
+md5('ffifdyop',true) --> 'or'6xxxxx
+md5('129581926211651571912466741651878684928',true) --> 'or'8xxxx

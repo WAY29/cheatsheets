@@ -1,0 +1,6 @@
+client-ip: 127.0.0.1
+x-forwarded-for: 127.0.0.1
+x-remote-ip: 127.0.0.1
+x-client-ip: 127.0.0.1
+x-client-IP: 127.0.0.1
+x-real-ip: 127.0.0.1

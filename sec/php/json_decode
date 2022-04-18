@@ -1,0 +1,3 @@
+// json_decode 可以接受unicode编码后的字符
+$body = '{"page":"/fl\u0061g"}';
+$a = json_decode($body,true); // {"page":"/flag"}

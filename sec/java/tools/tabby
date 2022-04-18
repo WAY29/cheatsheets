@@ -1,0 +1,32 @@
+代码属性图生成
+java -Xmx6g -jar tabby-1.1.0.jar cases/jars --isJDKProcess
+# 全量JDK依赖分析
+java -Xmx6g -jar tabby-1.1.0.jar cases/jars --isJDKProcess --withAllJDK
+
+对cases/jars目录下的所有jar包进行分析，但不分析当前的jre环境
+java -Xmx6g -jar tabby-1.1.0.jar cases/jars
+
+对cases/jars目录下的所有jar包进行分析，并且不使用当前的jre环境。这种情况仅适用于分析其他版本的jre依赖，所以需要在当前目标目录下添加目标jre环境rt.jar和jce.jar文件
+java -Xmx6g -jar tabby-1.1.0.jar cases/jars --excludeJDK
+
+仅分析当前的jre环境
+java -Xmx6g -jar tabby-1.1.0.jar --isJDKOnly
+
+针对fatjar进行分析
+java -Xmx6g -jar tabby-1.1.0.jar .jar --checkFatJar
+# 连同JDK依赖进行分析
+java -Xmx6g -jar tabby-1.1.0.jar .jar --checkFatJar --isJDKProcess
+
+将当前生成的graphdb文件中的内容，导入到neo4j图数据库中
+java -Xmx6g -jar tabby-1.1.0.jar --isSaveOnly
+
+保存到图数据库
+java -Xmx6g -jar tabby-1.1.0.jar --isSaveOnly
+
+常用neo4j搜索
+match path=(m1:Method)-[:CALL*..2]->(m2:Method {IS_SINK:true,NAME:"lookup"}) where m1.NAME =~ "set.*" return path
+
+match (source:Method {NAME:"compare"})
+match (sink:Method {IS_SINK:true, NAME:"invoke"})<-[:CALL]-(m1:Method)
+call apoc.algo.allSimplePaths(m1, source, "<CALL|ALIAS", 20) yield path 
+return * limit 20
